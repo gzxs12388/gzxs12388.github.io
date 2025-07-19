@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>测试主页 - gzxs12388</title>
+  <link href="https://fonts.googleapis.com/css?family=Orbitron:700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #0f2027, #2c5364, #1a2980, #26d0ce);
+      color: #fff;
+      font-family: 'Orbitron', 'Segoe UI', Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow-x: hidden;
+    }
+    .container {
+      background: rgba(20, 20, 30, 0.85);
+      border-radius: 24px;
+      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+      padding: 48px 36px;
+      text-align: center;
+      max-width: 480px;
+      margin: 32px auto;
+      border: 2px solid #26d0ce;
+      position: relative;
+      z-index: 2;
+    }
+    h1 {
+      font-size: 2.8rem;
+      letter-spacing: 0.12em;
+      margin-bottom: 16px;
+      background: linear-gradient(90deg, #26d0ce, #1a2980, #f2fcfe);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-fill-color: transparent;
+      font-weight: 700;
+    }
+    .desc {
+      font-size: 1.2rem;
+      margin-bottom: 32px;
+      color: #b2fefa;
+      letter-spacing: 0.05em;
+    }
+    .test-badge {
+      display: inline-block;
+      background: linear-gradient(90deg, #ff512f, #dd2476);
+      color: #fff;
+      font-weight: bold;
+      padding: 8px 20px;
+      border-radius: 20px;
+      font-size: 1.1rem;
+      margin-bottom: 24px;
+      box-shadow: 0 2px 8px rgba(255,81,47,0.2);
+      letter-spacing: 0.08em;
+      animation: pulse 1.5s infinite;
+    }
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(255,81,47,0.5); }
+      70% { box-shadow: 0 0 0 16px rgba(255,81,47,0); }
+      100% { box-shadow: 0 0 0 0 rgba(255,81,47,0); }
+    }
+    .footer {
+      margin-top: 40px;
+      color: #b2fefa;
+      font-size: 0.95rem;
+      opacity: 0.7;
+      letter-spacing: 0.04em;
+    }
+    .glow {
+      position: absolute;
+      top: -60px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 320px;
+      height: 120px;
+      background: radial-gradient(circle, #26d0ce 0%, #1a2980 80%, transparent 100%);
+      filter: blur(32px);
+      opacity: 0.7;
+      z-index: 1;
+    }
+  </style>
+</head>
+<body>
+  <div class="glow"></div>
+  <div class="container">
+    <div class="test-badge">测试环境</div>
+    <h1>gzxs12388 测试主页</h1>
+    <div class="desc">本页面仅用于测试和演示。</div>
+  </div>
+  <div class="footer">&copy; 2025 gzxs12388. All rights reserved.</div>
+</body>
+</html>
