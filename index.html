@@ -1,142 +1,684 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
-<script>
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "https://hm.baidu.com/hm.js?83a0838519f7a9554f196f23dd99e992";
-  var s = document.getElementsByTagName("script")[0]; 
-  s.parentNode.insertBefore(hm, s);
-})();
-</script>
+<html lang="zh-CN" class="scroll-smooth">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>王贵平的主页</title>
-  <link href="https://fonts.googleapis.com/css?family=Orbitron:700&display=swap" rel="stylesheet">
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      min-height: 100vh;
-      background: linear-gradient(135deg, #0f2027, #2c5364, #1a2980, #26d0ce);
-      color: #fff;
-      font-family: 'Orbitron', 'Segoe UI', Arial, sans-serif;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      overflow-x: hidden;
-    }
-    .container {
-      background: rgba(20, 20, 30, 0.85);
-      border-radius: 24px;
-      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-      padding: 48px 36px;
-      text-align: center;
-      max-width: 480px;
-      margin: 32px auto;
-      border: 2px solid #26d0ce;
-      position: relative;
-      z-index: 2;
-    }
-    h1 {
-      font-size: 2.8rem;
-      letter-spacing: 0.12em;
-      margin-bottom: 16px;
-      background: linear-gradient(90deg, #26d0ce, #1a2980, #f2fcfe);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      text-fill-color: transparent;
-      font-weight: 700;
-    }
-    .desc {
-      font-size: 1.2rem;
-      margin-bottom: 32px;
-      color: #b2fefa;
-      letter-spacing: 0.05em;
-    }
-    .test-badge {
-      display: inline-block;
-      background: linear-gradient(90deg, #ff512f, #dd2476);
-      color: #fff;
-      font-weight: bold;
-      padding: 8px 20px;
-      border-radius: 20px;
-      font-size: 1.1rem;
-      margin-bottom: 24px;
-      box-shadow: 0 2px 8px rgba(255,81,47,0.2);
-      letter-spacing: 0.08em;
-      animation: pulse 1.5s infinite;
-    }
-    @keyframes pulse {
-      0% { box-shadow: 0 0 0 0 rgba(255,81,47,0.5); }
-      70% { box-shadow: 0 0 0 16px rgba(255,81,47,0); }
-      100% { box-shadow: 0 0 0 0 rgba(255,81,47,0); }
-    }
-    .footer {
-      margin-top: 40px;
-      color: #b2fefa;
-      font-size: 0.95rem;
-      opacity: 0.7;
-      letter-spacing: 0.04em;
-    }
-    .glow {
-      position: absolute;
-      top: -60px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 320px;
-      height: 120px;
-      background: radial-gradient(circle, #26d0ce 0%, #1a2980 80%, transparent 100%);
-      filter: blur(32px);
-      opacity: 0.7;
-      z-index: 1;
-    }
-    @media (max-width: 600px) {
-      .container {
-        padding: 24px 8px;
-        max-width: 98vw;
-      }
-      h1 {
-        font-size: 1.6rem;
-      }
-      .desc {
-        font-size: 1rem;
-      }
-      .test-badge {
-        font-size: 0.95rem;
-        padding: 6px 12px;
-      }
-      .glow {
-        width: 180px;
-        height: 60px;
-        top: -30px;
-      }
-      .footer {
-        font-size: 0.8rem;
-        margin-top: 24px;
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <script>
+    // 配置Tailwind自定义主题
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            primary: '#3b82f6',
+            secondary: '#10b981',
+            accent: '#8b5cf6',
+            dark: {
+              100: '#1e293b',
+              200: '#0f172a',
+              300: '#020617'
+            },
+            light: {
+              100: '#f8fafc',
+              200: '#e2e8f0',
+              300: '#cbd5e1'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace']
+          },
+          animation: {
+            'fade-in': 'fadeIn 0.5s ease-in-out',
+            'slide-up': 'slideUp 0.6s ease-out',
+            'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite'
+          },
+          keyframes: {
+            fadeIn: {
+              '0%': { opacity: '0' },
+              '100%': { opacity: '1' }
+            },
+            slideUp: {
+              '0%': { transform: 'translateY(20px)', opacity: '0' },
+              '100%': { transform: 'translateY(0)', opacity: '1' }
+            }
+          }
+        }
       }
     }
-    @media (min-width: 1200px) {
-      .container {
-        max-width: 600px;
-        padding: 64px 48px;
+  </script>
+  <style type="text/tailwindcss">
+    @layer utilities {
+      .content-auto {
+        content-visibility: auto;
       }
-      h1 {
-        font-size: 3.2rem;
+      .text-shadow {
+        text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      }
+      .card-hover {
+        @apply transition-all duration-300 hover:shadow-lg hover:-translate-y-1;
+      }
+      .gradient-border {
+        position: relative;
+        border-radius: 0.75rem;
+        z-index: 0;
+      }
+      .gradient-border::before {
+        content: "";
+        position: absolute;
+        inset: -2px;
+        border-radius: 0.85rem;
+        background: linear-gradient(45deg, #3b82f6, #8b5cf6, #10b981);
+        z-index: -1;
+        animation: rotate 6s linear infinite;
+      }
+      @keyframes rotate {
+        0% { filter: hue-rotate(0deg); }
+        100% { filter: hue-rotate(360deg); }
       }
     }
   </style>
 </head>
-<body>
-  <div class="glow"></div>
-  <div class="container">
-    <div class="test-badge">测试环境</div>
-    <h1>gzxs12388 测试主页</h1>
-    <div class="desc">本页面仅用于测试和演示。</div>
-  </div>
-  <div class="footer">&copy; 2025 gzxs12388. All rights reserved.</div>
+<body class="bg-light-100 text-gray-800 dark:bg-dark-200 dark:text-gray-100 transition-colors duration-300">
+  <!-- 导航栏 -->
+  <header class="sticky top-0 z-50 bg-white/80 dark:bg-dark-100/80 backdrop-blur-md shadow-sm transition-all duration-300">
+    <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+              <div class="flex items-center gap-2">
+          <img src="images/icon/me.jpg" alt="头像" class="w-10 h-10 rounded-full border-2 border-primary shadow-sm object-cover" />
+          <div>
+            <h1 class="text-xl md:text-2xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent leading-tight">王贵平的主页</h1>
+            <a href="https://gzxs12388.github.io/" target="_blank" rel="noopener" class="block mt-1 text-base md:text-lg font-semibold tracking-wide text-white bg-primary dark:bg-accent px-3 py-0.5 rounded shadow-sm w-max hover:bg-accent dark:hover:bg-primary transition-colors" style="letter-spacing:0.05em;">
+              gzxs12388.github.io
+            </a>
+          </div>
+        </div>
+      
+      <div class="flex items-center gap-4">
+        <nav class="hidden md:flex items-center gap-6">
+          <a href="#multiplication" class="hover:text-primary dark:hover:text-accent transition-colors">乘法速算</a>
+          <a href="#division" class="hover:text-primary dark:hover:text-accent transition-colors">除法速算</a>
+          <a href="#practice" class="hover:text-primary dark:hover:text-accent transition-colors">练习方案</a>
+          <a href="#test" class="hover:text-primary dark:hover:text-accent transition-colors">检验标准</a>
+        </nav>
+        
+        <!-- 模式切换按钮 -->
+        <button id="theme-toggle" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-dark-300 transition-colors">
+          <i class="fa fa-sun-o dark:hidden text-yellow-500"></i>
+          <i class="fa fa-moon-o hidden dark:block text-blue-300"></i>
+        </button>
+        
+        <!-- 移动端菜单按钮 -->
+        <button id="menu-toggle" class="md:hidden p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-dark-300">
+          <i class="fa fa-bars"></i>
+        </button>
+      </div>
+    </div>
+    
+    <!-- 移动端菜单 -->
+    <div id="mobile-menu" class="md:hidden hidden bg-white dark:bg-dark-100 shadow-md animate-fade-in">
+      <div class="container mx-auto px-4 py-3 flex flex-col gap-3">
+        <a href="#multiplication" class="py-2 hover:text-primary dark:hover:text-accent transition-colors">乘法速算</a>
+        <a href="#division" class="py-2 hover:text-primary dark:hover:text-accent transition-colors">除法速算</a>
+        <a href="#practice" class="py-2 hover:text-primary dark:hover:text-accent transition-colors">练习方案</a>
+        <a href="#test" class="py-2 hover:text-primary dark:hover:text-accent transition-colors">检验标准</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container mx-auto px-4 py-8">
+    <!-- 当前位置与时间戳 -->
+    <div class="flex justify-between items-center mb-8 sticky top-20 z-40 bg-white/90 dark:bg-dark-100/90 backdrop-blur-md rounded-xl shadow-md px-6 py-3 border border-gray-200 dark:border-gray-700" style="min-height:3.5rem;">
+      <div class="flex items-center gap-2 text-gray-700 dark:text-gray-200 text-base font-medium">
+        <i class="fa fa-map-marker text-primary dark:text-accent"></i>
+        <span>你所在的位置：</span>
+        <span class="font-bold text-primary dark:text-accent">主页</span>
+      </div>
+      <div class="flex items-center gap-2 text-gray-500 dark:text-gray-400 text-sm font-mono">
+        <i class="fa fa-clock-o text-primary dark:text-accent"></i>
+        <span id="dynamic-timestamp">--:--:--</span>
+      </div>
+    </div>
+    <!-- 英雄区域 -->
+    <section class="mb-16 text-center animate-fade-in">
+      <div class="gradient-border bg-white dark:bg-dark-100 p-8 md:p-12 rounded-2xl shadow-xl">
+        <h2 class="text-3xl md:text-5xl font-bold mb-4 text-shadow">专业级速算口诀体系</h2>
+        <p class="text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+          掌握28种核心速算技巧，提升计算速度5-8倍，让复杂运算变得简单高效
+        </p>
+      </div>
+    </section>
+
+    <!-- 乘法速算部分 -->
+    <section id="multiplication" class="mb-20 animate-slide-up">
+      <div class="flex items-center gap-3 mb-8">
+        <div class="w-10 h-10 rounded-full bg-primary/10 dark:bg-primary/20 flex items-center justify-center">
+          <i class="fa fa-times text-primary dark:text-accent"></i>
+        </div>
+        <h2 class="text-2xl md:text-3xl font-bold">乘法速算体系</h2>
+      </div>
+      
+      <!-- 特殊数乘法 -->
+      <div class="mb-12">
+        <h3 class="text-xl font-semibold mb-6 text-primary dark:text-accent">特殊数乘法</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- 卡片1 -->
+          <div class="bg-white dark:bg-dark-100 rounded-xl p-6 shadow-md card-hover">
+            <h4 class="font-bold text-lg mb-3 flex items-center">
+              <span class="w-8 h-8 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center mr-2">1</span>
+              接近整十/整百数相乘
+            </h4>
+            <p class="text-gray-600 dark:text-gray-300 mb-3"><strong>口诀：</strong>补数平方法，(A±a)(B±b)=AB±aB±bA±ab</p>
+            <div class="bg-gray-50 dark:bg-dark-300 p-4 rounded-lg font-mono text-sm">
+              <p>98×97=(100-2)(100-3)</p>
+              <p>=10000-500+6=9506</p>
+              <p class="mt-2">103×105=(100+3)(100+5)</p>
+              <p>=10000+800+15=11315</p>
+            </div>
+          </div>
+          
+          <!-- 卡片2 -->
+          <div class="bg-white dark:bg-dark-100 rounded-xl p-6 shadow-md card-hover">
+            <h4 class="font-bold text-lg mb-3 flex items-center">
+              <span class="w-8 h-8 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center mr-2">2</span>
+              几十五平方
+            </h4>
+            <p class="text-gray-600 dark:text-gray-300 mb-3"><strong>口诀：</strong>头×(头+1)接25</p>
+            <div class="bg-gray-50 dark:bg-dark-300 p-4 rounded-lg font-mono text-sm">
+              <p>65²=6×7=42 → 4225</p>
+              <p class="mt-2">115²=11×12=132 → 13225</p>
+            </div>
+          </div>
+          
+          <!-- 卡片3 -->
+          <div class="bg-white dark:bg-dark-100 rounded-xl p-6 shadow-md card-hover">
+            <h4 class="font-bold text-lg mb-3 flex items-center">
+              <span class="w-8 h-8 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center mr-2">3</span>
+              首尾颠倒数相乘
+            </h4>
+            <p class="text-gray-600 dark:text-gray-300 mb-3"><strong>口诀：</strong>首尾相乘，中间交叉和×10</p>
+            <div class="bg-gray-50 dark:bg-dark-300 p-4 rounded-lg font-mono text-sm">
+              <p>23×32= (2×3)+(2×2+3×3)×10</p>
+              <p>=6+130=136</p>
+              <p class="mt-2">123×321=39483</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- 进阶技巧 -->
+      <div class="mb-12">
+        <h3 class="text-xl font-semibold mb-6 text-primary dark:text-accent">进阶技巧</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- 卡片4 -->
+          <div class="bg-white dark:bg-dark-100 rounded-xl p-6 shadow-md card-hover">
+            <h4 class="font-bold text-lg mb-3 flex items-center">
+              <span class="w-8 h-8 rounded-full bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center mr-2">4</span>
+              三位数顺数乘十八合
+            </h4>
+            <p class="text-gray-600 dark:text-gray-300 mb-3"><strong>口诀：</strong>前三位=(头+1)×头，中间位=尾+尾补，后三位=尾×尾补</p>
+            <div class="bg-gray-50 dark:bg-dark-300 p-4 rounded-lg font-mono text-sm">
+              <p>675×223</p>
+              <p>前三位：(6+1)×2=14 → 140</p>
+              <p>中间位：7+7=14 → 进1留4</p>
+              <p>后三位：5×3=15 → 150525</p>
+            </div>
+          </div>
+          
+          <!-- 卡片5 -->
+          <div class="bg-white dark:bg-dark-100 rounded-xl p-6 shadow-md card-hover">
+            <h4 class="font-bold text-lg mb-3 flex items-center">
+              <span class="w-8 h-8 rounded-full bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center mr-2">5</span>
+              任意数×11
+            </h4>
+            <p class="text-gray-600 dark:text-gray-300 mb-3"><strong>口诀：</strong>两边一拉，邻位相加中间插（满十进一）</p>
+            <div class="bg-gray-50 dark:bg-dark-300 p-4 rounded-lg font-mono text-sm">
+              <p>57×11=5（5+7=12）7 → 627</p>
+              <p class="mt-2">1234×11=1 3 5 7 4 → 13574</p>
+            </div>
+          </div>
+          
+          <!-- 卡片6 -->
+          <div class="bg-white dark:bg-dark-100 rounded-xl p-6 shadow-md card-hover">
+            <h4 class="font-bold text-lg mb-3 flex items-center">
+              <span class="w-8 h-8 rounded-full bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center mr-2">6</span>
+              魏式系数为0的乘法
+            </h4>
+            <p class="text-gray-600 dark:text-gray-300 mb-3"><strong>口诀：</strong>头×(头+1)接尾×尾</p>
+            <div class="bg-gray-50 dark:bg-dark-300 p-4 rounded-lg font-mono text-sm">
+              <p>33×46=3×(4+1)=15 → 3×6=18 → 1518</p>
+              <p class="mt-2">84×43=4×(8+1)=36 → 3×4=12 → 3612</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- 复杂场景 -->
+      <div>
+        <h3 class="text-xl font-semibold mb-6 text-primary dark:text-accent">复杂场景</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- 卡片7 -->
+          <div class="bg-white dark:bg-dark-100 rounded-xl p-6 shadow-md card-hover">
+            <h4 class="font-bold text-lg mb-3 flex items-center">
+              <span class="w-8 h-8 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center mr-2">7</span>
+              两位数×三位数
+            </h4>
+            <p class="text-gray-600 dark:text-gray-300 mb-3"><strong>口诀：</strong></p>
+            <ul class="list-disc pl-5 mb-3 text-gray-600 dark:text-gray-300">
+              <li>个位×个位 → 末位</li>
+              <li>个位×十位 + 十位×个位 → 中间位（进位）</li>
+              <li>十位×百位 + 中间位进位 → 首位</li>
+            </ul>
+            <div class="bg-gray-50 dark:bg-dark-300 p-4 rounded-lg font-mono text-sm">
+              <p>746×32</p>
+              <p>6×2=12 → 末位2，进1</p>
+              <p>4×2+7×6=8+42=50+1=51 → 中间位1，进5</p>
+              <p>7×3+5=26 → 23872</p>
+            </div>
+          </div>
+          
+          <!-- 卡片8 -->
+          <div class="bg-white dark:bg-dark-100 rounded-xl p-6 shadow-md card-hover">
+            <h4 class="font-bold text-lg mb-3 flex items-center">
+              <span class="w-8 h-8 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center mr-2">8</span>
+              多位数×25/125
+            </h4>
+            <p class="text-gray-600 dark:text-gray-300 mb-3"><strong>口诀：</strong></p>
+            <ul class="list-disc pl-5 mb-3 text-gray-600 dark:text-gray-300">
+              <li>×25=原数×100÷4</li>
+              <li>×125=原数×1000÷8</li>
+            </ul>
+            <div class="bg-gray-50 dark:bg-dark-300 p-4 rounded-lg font-mono text-sm">
+              <p>34×25=3400÷4=850</p>
+              <p class="mt-2">16×125=16000÷8=2000</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 除法速算部分 -->
+    <section id="division" class="mb-20 animate-slide-up">
+      <div class="flex items-center gap-3 mb-8">
+        <div class="w-10 h-10 rounded-full bg-secondary/10 dark:bg-secondary/20 flex items-center justify-center">
+          <i class="fa fa-divide text-secondary dark:text-green-400"></i>
+        </div>
+        <h2 class="text-2xl md:text-3xl font-bold">除法速算体系</h2>
+      </div>
+      
+      <!-- 核心方法 -->
+      <div class="mb-12">
+        <h3 class="text-xl font-semibold mb-6 text-secondary dark:text-green-400">核心方法</h3>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <!-- 卡片1 -->
+          <div class="bg-white dark:bg-dark-100 rounded-xl p-6 shadow-md card-hover">
+            <h4 class="font-bold text-lg mb-3 flex items-center">
+              <span class="w-8 h-8 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center mr-2">1</span>
+              高位试商法
+            </h4>
+            <p class="text-gray-600 dark:text-gray-300 mb-3"><strong>口诀：</strong>除数首位四舍五入，同头无除商八、九</p>
+            <div class="bg-gray-50 dark:bg-dark-300 p-4 rounded-lg font-mono text-sm">
+              <p>456÷12：除数≈10</p>
+              <p>45÷10商4→12×4=48＞45</p>
+              <p>调商3，余96→96÷12=8 → 38</p>
+            </div>
+          </div>
+          
+          <!-- 卡片2 -->
+          <div class="bg-white dark:bg-dark-100 rounded-xl p-6 shadow-md card-hover">
+            <h4 class="font-bold text-lg mb-3 flex items-center">
+              <span class="w-8 h-8 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center mr-2">2</span>
+              撞十补除法
+            </h4>
+            <p class="text-gray-600 dark:text-gray-300 mb-3"><strong>口诀：</strong>补数=100-除数，商=被除数÷补数，余数=被除数-商×除数</p>
+            <div class="bg-gray-50 dark:bg-dark-300 p-4 rounded-lg font-mono text-sm">
+              <p>354÷86</p>
+              <p>补数=14，354÷14=25</p>
+              <p>25×86=2150→余数=354-2150=10</p>
+              <p>结果：4余10</p>
+            </div>
+          </div>
+          
+          <!-- 卡片3 -->
+          <div class="bg-white dark:bg-dark-100 rounded-xl p-6 shadow-md card-hover">
+            <h4 class="font-bold text-lg mb-3 flex items-center">
+              <span class="w-8 h-8 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center mr-2">3</span>
+              多位数÷9
+            </h4>
+            <p class="text-gray-600 dark:text-gray-300 mb-3"><strong>口诀：</strong>首位下拉，逐位相加，去尾加1</p>
+            <div class="bg-gray-50 dark:bg-dark-300 p-4 rounded-lg font-mono text-sm">
+              <p>324÷9=3（3+2=5）（5+4=9）→ 36</p>
+              <p class="mt-2">513÷9=5（5+1=6）（6+3=9）→ 57</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- 特殊技巧 -->
+      <div>
+        <h3 class="text-xl font-semibold mb-6 text-secondary dark:text-green-400">特殊技巧</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- 卡片4 -->
+          <div class="bg-white dark:bg-dark-100 rounded-xl p-6 shadow-md card-hover">
+            <h4 class="font-bold text-lg mb-3 flex items-center">
+              <span class="w-8 h-8 rounded-full bg-teal-100 dark:bg-teal-900/30 flex items-center justify-center mr-2">4</span>
+              除数分解法
+            </h4>
+            <p class="text-gray-600 dark:text-gray-300 mb-3"><strong>口诀：</strong>将除数拆分为因数相乘，分步相除</p>
+            <div class="bg-gray-50 dark:bg-dark-300 p-4 rounded-lg font-mono text-sm">
+              <p>720÷24=720÷(6×4)</p>
+              <p>=720÷6÷4=120÷4=30</p>
+              <p class="mt-2">1260÷36=1260÷(9×4)</p>
+              <p>=1260÷9÷4=140÷4=35</p>
+            </div>
+          </div>
+          
+          <!-- 卡片5 -->
+          <div class="bg-white dark:bg-dark-100 rounded-xl p-6 shadow-md card-hover">
+            <h4 class="font-bold text-lg mb-3 flex items-center">
+              <span class="w-8 h-8 rounded-full bg-teal-100 dark:bg-teal-900/30 flex items-center justify-center mr-2">5</span>
+              九归口诀应用
+            </h4>
+            <p class="text-gray-600 dark:text-gray-300 mb-3"><strong>口诀：</strong>逢几进几，下加余数</p>
+            <div class="bg-gray-50 dark:bg-dark-300 p-4 rounded-lg font-mono text-sm">
+              <p>八归：86÷8→"八六7余4"→商7，余4</p>
+              <p class="mt-2">七归：34÷7→"七三4余2"→商4，余6</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 练习方案 -->
+    <section id="practice" class="mb-20 animate-slide-up">
+      <div class="flex items-center gap-3 mb-8">
+        <div class="w-10 h-10 rounded-full bg-accent/10 dark:bg-accent/20 flex items-center justify-center">
+          <i class="fa fa-tasks text-accent dark:text-purple-400"></i>
+        </div>
+        <h2 class="text-2xl md:text-3xl font-bold">练习方案</h2>
+      </div>
+      
+      <div class="bg-white dark:bg-dark-100 rounded-xl p-6 md:p-8 shadow-md mb-8">
+        <h3 class="text-xl font-semibold mb-6">专项突破表</h3>
+        <div class="overflow-x-auto">
+          <table class="w-full border-collapse">
+            <thead>
+              <tr class="border-b-2 border-gray-200 dark:border-gray-700">
+                <th class="py-3 px-4 text-left">场景</th>
+                <th class="py-3 px-4 text-left">训练方法</th>
+                <th class="py-3 px-4 text-left">目标时间</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="border-b border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-dark-300/50 transition-colors">
+                <td class="py-3 px-4">头同尾合十</td>
+                <td class="py-3 px-4">每天练习20题，限时10秒/题</td>
+                <td class="py-3 px-4">1周</td>
+              </tr>
+              <tr class="border-b border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-dark-300/50 transition-colors">
+                <td class="py-3 px-4">多位数÷9</td>
+                <td class="py-3 px-4">用扑克牌随机组合练习</td>
+                <td class="py-3 px-4">3天</td>
+              </tr>
+              <tr class="hover:bg-gray-50 dark:hover:bg-dark-300/50 transition-colors">
+                <td class="py-3 px-4">任意数×11</td>
+                <td class="py-3 px-4">手机秒表计时，连续10题无错</td>
+                <td class="py-3 px-4">2周</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- 错误类型分类 -->
+        <div class="bg-white dark:bg-dark-100 rounded-xl p-6 shadow-md card-hover">
+          <h3 class="text-xl font-semibold mb-4">错误类型分类</h3>
+          <ul class="space-y-3">
+            <li class="flex gap-3">
+              <div class="w-6 h-6 rounded-full bg-red-100 dark:bg-red-900/30 flex items-center justify-center mt-0.5 flex-shrink-0">
+                <i class="fa fa-exclamation text-red-500 text-sm"></i>
+              </div>
+              <div>
+                <strong>进位错误：</strong>
+                <p class="text-gray-600 dark:text-gray-300 text-sm">用彩色笔标注进位步骤</p>
+              </div>
+            </li>
+            <li class="flex gap-3">
+              <div class="w-6 h-6 rounded-full bg-orange-100 dark:bg-orange-900/30 flex items-center justify-center mt-0.5 flex-shrink-0">
+                <i class="fa fa-question text-orange-500 text-sm"></i>
+              </div>
+              <div>
+                <strong>口诀混淆：</strong>
+                <p class="text-gray-600 dark:text-gray-300 text-sm">制作对比卡片（如头同尾合十vs尾同头合十）</p>
+              </div>
+            </li>
+            <li class="flex gap-3">
+              <div class="w-6 h-6 rounded-full bg-yellow-100 dark:bg-yellow-900/30 flex items-center justify-center mt-0.5 flex-shrink-0">
+                <i class="fa fa-balance-scale text-yellow-600 text-sm"></i>
+              </div>
+              <div>
+                <strong>试商偏差：</strong>
+                <p class="text-gray-600 dark:text-gray-300 text-sm">用补数法辅助验证商的正确性</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+        
+        <!-- 工具推荐 -->
+        <div class="bg-white dark:bg-dark-100 rounded-xl p-6 shadow-md card-hover">
+          <h3 class="text-xl font-semibold mb-4">工具推荐</h3>
+          <div class="space-y-4">
+            <div>
+              <h4 class="font-medium mb-2 flex items-center">
+                <i class="fa fa-mobile text-blue-500 mr-2 text-xl"></i>
+                APP
+              </h4>
+              <ul class="pl-6 list-disc text-gray-600 dark:text-gray-300 space-y-1">
+                <li>速算盒子（分场景训练）</li>
+                <li>珠心算大师（模拟算盘）</li>
+              </ul>
+            </div>
+            <div>
+              <h4 class="font-medium mb-2 flex items-center">
+                <i class="fa fa-cubes text-purple-500 mr-2"></i>
+                教具
+              </h4>
+              <ul class="pl-6 list-disc text-gray-600 dark:text-gray-300 space-y-1">
+                <li>磁吸数字卡片（适合多位数拆分练习）</li>
+                <li>速算练习册（分难度梯度）</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 检验标准 -->
+    <section id="test" class="mb-16 animate-slide-up">
+      <div class="flex items-center gap-3 mb-8">
+        <div class="w-10 h-10 rounded-full bg-yellow-500/10 dark:bg-yellow-500/20 flex items-center justify-center">
+          <i class="fa fa-check-square-o text-yellow-500 dark:text-yellow-400"></i>
+        </div>
+        <h2 class="text-2xl md:text-3xl font-bold">检验标准</h2>
+      </div>
+      
+      <div class="gradient-border bg-white dark:bg-dark-100 p-6 md:p-8 rounded-xl shadow-xl">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="text-center p-4">
+            <div class="w-16 h-16 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center mx-auto mb-4">
+              <i class="fa fa-times text-primary dark:text-blue-400 text-2xl"></i>
+            </div>
+            <h3 class="font-bold text-lg mb-2">乘法</h3>
+            <p class="text-gray-600 dark:text-gray-300">10道三位数×两位数题，5分钟内完成且正确率100%</p>
+          </div>
+          
+          <div class="text-center p-4">
+            <div class="w-16 h-16 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center mx-auto mb-4">
+              <i class="fa fa-divide text-secondary dark:text-green-400 text-2xl"></i>
+            </div>
+            <h3 class="font-bold text-lg mb-2">除法</h3>
+            <p class="text-gray-600 dark:text-gray-300">8道多位数除法题（含余数），8分钟内完成且余数正确</p>
+          </div>
+          
+          <div class="text-center p-4">
+            <div class="w-16 h-16 rounded-full bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center mx-auto mb-4">
+              <i class="fa fa-calculator text-accent dark:text-purple-400 text-2xl"></i>
+            </div>
+            <h3 class="font-bold text-lg mb-2">混合运算</h3>
+            <p class="text-gray-600 dark:text-gray-300">3道综合题（如12345÷15×287），10分钟内完成</p>
+          </div>
+        </div>
+        
+        <div class="mt-8 p-4 bg-gray-50 dark:bg-dark-300 rounded-lg">
+          <p class="text-center text-gray-700 dark:text-gray-200">
+            熟练后可实现：多位数乘法速度提升5-8倍，复杂除法心算准确率超95%，日常计算效率提高300%以上
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- 页脚 -->
+  <footer class="bg-gray-100 dark:bg-dark-100 py-8">
+    <div class="container mx-auto px-4">
+      <div class="flex flex-col md:flex-row justify-between items-center">
+        <div class="mb-4 md:mb-0">
+          <div class="flex items-center gap-2">
+            <i class="fa fa-calculator text-primary dark:text-accent text-xl"></i>
+            <span class="font-bold">王贵平的主页</span>
+          </div>
+          <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">专业·高效·实用</p>
+        </div>
+        
+        <div class="flex gap-4">
+          <a href="#" class="w-8 h-8 rounded-full bg-gray-200 dark:bg-dark-300 flex items-center justify-center hover:bg-primary hover:text-white dark:hover:bg-primary transition-colors">
+            <i class="fa fa-share-alt"></i>
+          </a>
+          <a href="#" class="w-8 h-8 rounded-full bg-gray-200 dark:bg-dark-300 flex items-center justify-center hover:bg-primary hover:text-white dark:hover:bg-primary transition-colors">
+            <i class="fa fa-bookmark"></i>
+          </a>
+          <a href="#" class="w-8 h-8 rounded-full bg-gray-200 dark:bg-dark-300 flex items-center justify-center hover:bg-primary hover:text-white dark:hover:bg-primary transition-colors">
+            <i class="fa fa-print"></i>
+          </a>
+        </div>
+      </div>
+      
+      <div class="border-t border-gray-200 dark:border-gray-700 mt-6 pt-6 text-center text-sm text-gray-500 dark:text-gray-400">
+        <p>© 2025 王贵平保留所有权</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- 返回顶部按钮 -->
+  <button id="back-to-top" class="fixed bottom-6 right-6 w-12 h-12 rounded-full bg-primary text-white shadow-lg flex items-center justify-center opacity-0 invisible transition-all duration-300 hover:bg-primary/90">
+    <i class="fa fa-arrow-up"></i>
+  </button>
+
+  <script>
+    // 主题切换功能
+    const themeToggle = document.getElementById('theme-toggle');
+    const html = document.documentElement;
+    
+    // 检查本地存储中的主题偏好
+    if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      html.classList.add('dark');
+    } else {
+      html.classList.remove('dark');
+    }
+    
+    themeToggle.addEventListener('click', () => {
+      html.classList.toggle('dark');
+      // 保存主题偏好到本地存储
+      if (html.classList.contains('dark')) {
+        localStorage.theme = 'dark';
+      } else {
+        localStorage.theme = 'light';
+      }
+    });
+    
+    // 移动端菜单切换
+    const menuToggle = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    
+    menuToggle.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+    
+    // 点击导航链接后关闭移动菜单
+    document.querySelectorAll('#mobile-menu a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+      });
+    });
+    
+    // 返回顶部按钮
+    const backToTopButton = document.getElementById('back-to-top');
+    
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 300) {
+        backToTopButton.classList.remove('opacity-0', 'invisible');
+        backToTopButton.classList.add('opacity-100', 'visible');
+      } else {
+        backToTopButton.classList.remove('opacity-100', 'visible');
+        backToTopButton.classList.add('opacity-0', 'invisible');
+      }
+      
+      // 导航栏滚动效果
+      const header = document.querySelector('header');
+      if (window.scrollY > 50) {
+        header.classList.add('py-2', 'shadow');
+        header.classList.remove('py-3');
+      } else {
+        header.classList.add('py-3');
+        header.classList.remove('py-2', 'shadow');
+      }
+    });
+    
+    backToTopButton.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+    
+    // 滚动动画
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.1
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate-slide-up');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+    
+    // 观察所有section元素
+    document.querySelectorAll('section').forEach(section => {
+      section.classList.remove('animate-slide-up');
+      observer.observe(section);
+    });
+
+    // 动态时间戳功能
+    function updateTimestamp() {
+      const el = document.getElementById('dynamic-timestamp');
+      if (!el) return;
+      const now = new Date();
+      // 格式：2025-07-20 14:23:45 星期日
+      const weekMap = ['日','一','二','三','四','五','六'];
+      const pad = n => n.toString().padStart(2, '0');
+      const str = `${now.getFullYear()}-${pad(now.getMonth()+1)}-${pad(now.getDate())} ${pad(now.getHours())}:${pad(now.getMinutes())}:${pad(now.getSeconds())} 星期${weekMap[now.getDay()]}`;
+      el.textContent = str;
+    }
+    setInterval(updateTimestamp, 1000);
+    updateTimestamp();
+  </script>
 </body>
 </html>
